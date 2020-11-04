@@ -1,38 +1,82 @@
-.App {
-  text-align: center;
+@import "~materialize-css/dist/css/materialize.min.css";
+
+h1 {
+    text-align: center;
+    background: linear-gradient(#e66465, #9198e5);
+    -webkit-background-clip: text;
+    color: transparent;
+}
+.colorPicker-wrapper {
+    position: relative;
+    width: 300px;
+    margin: 50px auto;
+}
+.colorPicker {
+    display: flex;
+    justify-content: space-around;
+    position: relative;
+    border-radius: 15px;
+    background: #ffffff;
+}
+.colorPicker:after{
+    content: "";
+    position: absolute;
+    width: calc(100% + 6px);
+    height: calc(100% + 6px);
+    top: -3px;
+    left: -3px;
+    z-index: -1;
+    background: linear-gradient(90deg, rgba(230,100,101,1) 0%, rgba(145,152,229,1) 61%);
+    border-radius: 15px;
+}
+.hex{
+    width: 170px;
+    padding-left: 15px;
+}
+.hex input {
+    border-bottom: none!important;
+    margin-bottom: 0;
+}
+.color, .arrow{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    position: relative;
+    min-width: 65px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.arrow:before, .color:before {
+    content: '';
+    position: absolute;
+    height: 100%;
+    top: 0;
+}
+.arrow:before, .color:before{
+    left: 0;
+    border-left: 1px solid grey;
+}
+.color span{
+    width: 30px;
+    height: 30px;
+    background-color: black;
+}
+.arrow {
+    color: #9198e5;
+    font-size: 30px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.dropdown{
+    position: absolute;
+    top: 65px;
+    right: 0;
+    width: 200px;
+    height: 100px;
+    background: dimgrey;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.ddRgb{
+    top: 265px;
+    right: 0;
 }
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+li {
+    cursor: pointer;
 }
