@@ -1,10 +1,11 @@
-import React, {useState, useEffect, useContext}  from 'react'
+import React, {useContext}  from 'react'
 import Context from './context'
-export default function DropArrowItem({value, rgb}){
-    const {rgbToHex} = useContext(Context);
-    const {chooseArrowItem} = useContext(Context);
-    const hex = rgbToHex(rgb[0], rgb[1], rgb[2]);
+export default function DropArrowItem(item){
+    console.log(item);
+    const {activeColor, currentColor} = useContext(Context);
+    const backgroundColor = {backgroundColor: `rgb( ${item.rgb[0]},${item.rgb[1]},${item.rgb[2]})`};
+
     return(
-        <li onClick={() => {chooseArrowItem(hex, rgb)}}><span>{value}</span>   <span>{hex}</span></li>
+        <li className={currentColor.value === item.value ? 'active' : ''}  onClick={() => {activeColor(item); }}><span>{item.value}</span>   <span style={backgroundColor} /></li>
     )
 }

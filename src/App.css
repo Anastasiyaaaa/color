@@ -58,7 +58,6 @@ h1 {
 .color span{
     width: 30px;
     height: 30px;
-    background-color: black;
 }
 .arrow {
     color: #9198e5;
@@ -70,13 +69,55 @@ h1 {
     top: 65px;
     right: 0;
     width: 200px;
-    height: 100px;
-    background: dimgrey;
+    border: 3px solid #9198e5;
+    border-radius: 15px;
 }
-.ddRgb{
+.dropdown ul{
+    margin: 0;
+}
+.dropdown_rgb{
     top: 265px;
     right: 0;
 }
-li {
+.dropdown li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 20px;
+    text-transform: uppercase;
+}
+.dropdown_arrow li {
     cursor: pointer;
+    border-bottom: 1px solid #9198e5;
+}
+.dropdown_arrow li:first-child{
+    border-radius: 11px 11px 0 0;
+}
+.dropdown_arrow li:last-child{
+    border-bottom: none;
+    border-radius: 0 0 11px 11px;
+}
+.dropdown_arrow li:hover, li.active{
+    background: rgba(145, 152, 229, 0.5);
+}
+.dropdown_arrow li span:nth-child(2){
+    width: 18px;
+    height: 18px;
+}
+.range{
+    position: relative;
+    display: inline-block;
+    width: 85%;
+    background-color: grey;
+    height: 2px;
+    border-radius: 43px;
+}
+.range span{
+    position: absolute;
+    left: 0;
+    top: -4px;
+    display: block;
+    width: 8px;
+    height: 8px;
+    background-color: red;
 }
