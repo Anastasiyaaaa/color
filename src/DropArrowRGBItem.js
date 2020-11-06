@@ -3,7 +3,7 @@ import Context from './context'
 // export default function DropArrowRGBItem(props){
 //     const {tempColor} = useContext(Context);
 //
-// console.log(tempColor);
+// // console.log(tempColor);
 //     let text;
 //     let rangeValue;
 //     let backgroundColor;
@@ -26,7 +26,7 @@ import Context from './context'
 //             backgroundColor = {backgroundColor: `rgb( 0, 0, ${tempColor.rgb[2]})`};
 //     }
 //     const change = (v) => {
-//         console.log(v)
+//         // console.log(v)
 //     };
 //
 //     return(
@@ -37,7 +37,7 @@ import Context from './context'
 export default function DropArrowRGBItem(props){
     const {tempColor} = useContext(Context);
 
-console.log(tempColor);
+// console.log(tempColor);
 
     let rangeValue;
     let backgroundColor;
@@ -45,12 +45,13 @@ console.log(tempColor);
 
 
     const change = (v) => {
-        setRangeVal(v);
-        props.onChange(v);
-        console.log(v)
+        setRangeVal(+v);
+        props.onChange(+v);
+        // console.log(v)
     };
+    const position = {left: '25%'};
 
     return(
-        <li><span>{props.text}</span> <input type="range" style={backgroundColor} onChange={(e) => change(e.target.value) } value={rangeVal} min="0" max="255"  className="range" id="myRange" /> </li>
+        <li><span>{props.text}</span> <input type="range" onChange={(e) => change(e.target.value)} value={rangeVal} min="0" max="255"  className={`range range${props.i}`} /> </li>
     )
 }

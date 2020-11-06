@@ -4,6 +4,7 @@ import DropArrowItem from './DropArrowItem'
 
 export default function DropDowns() {
     const {colors} = useContext(Context);
+    const {showRGB, setShowRGB} = useContext(Context);
     return (
         <div className='dropdown dropdown_arrow'>
             <ul>

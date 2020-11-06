@@ -17,9 +17,11 @@ export default function ColorPicker() {
     ];
 
     const [show, setShow] = useState(false);
+    const [showRGB, setShowRGB] = useState(false);
     const [currentColor, setCurrentColor] = useState(colors[0]);
     const [tempColor, setTempColor] = useState(null);
     const rgbToHex = (arr) =>{
+        console.log(arr)
         const r = arr[0];
         const g = arr[1];
         const b = arr[2];
@@ -33,9 +35,9 @@ export default function ColorPicker() {
         // setShow(!show);
     },[currentColor]);
     // rgbToHex(color.rgb)
-    const activeColor = (item) => { setCurrentColor(item); setShow(!show);};
+    const activeColor = (item) => { console.log(item); setCurrentColor(item); setTempColor(null); setShow(!show);};
     return (
-        <Context.Provider value={{activeColor, colors, currentColor, setShow, show, tempColor, setTempColor}}>
+        <Context.Provider value={{activeColor, colors,setCurrentColor, currentColor, setShow, show, tempColor, setTempColor, showRGB, setShowRGB}}>
             <div className="colorPicker-wrapper">
                 <div className="colorPicker">
                     <div className="hex"><input disabled value={rgbToHex(currentColor.rgb)}/></div>
@@ -43,7 +45,7 @@ export default function ColorPicker() {
                     <Arrow />
                 </div>
                 {show ?  <DropDowns /> : ''}
-                <DropDownsRGB />
+                {showRGB ? <DropDownsRGB /> : ''}
             </div>
         </Context.Provider>
     );
