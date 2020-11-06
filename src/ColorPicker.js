@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useContext}  from 'react'
+import React, {useEffect, useState} from 'react'
 import Context from './context'
 import Color from './Color';
 import Arrow from './Arrow';
@@ -16,36 +16,49 @@ export default function ColorPicker() {
         {value: 'blue', rgb: [27,28,255]}
     ];
 
-    const [show, setShow] = useState(false);
-    const [showRGB, setShowRGB] = useState(false);
+    const [showColorList, setShowColorList] = useState(false);
+    const [showRGBRange, setShowRGBRange] = useState(false);
     const [currentColor, setCurrentColor] = useState(colors[0]);
     const [tempColor, setTempColor] = useState(null);
+
     const rgbToHex = (arr) =>{
-        console.log(arr)
         const r = arr[0];
         const g = arr[1];
         const b = arr[2];
         return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1)
     };
 
-    // const [value, setValue] = useState(rgbToHex(color[0].rgb));
-    useEffect(() =>{
-        // setActive(document.querySelector('.active').id);
+    const useOutsideAlerter = (ref, set, curr) => {
+        useEffect(() => {
+            function handleClickOutside(event) {
+                if (ref.current && !ref.current.contains(event.target)) {
+                    set(!curr);
+                    setTempColor(null);
+                }
+            }
+            document.addEventListener("mousedown", handleClickOutside);
+            return () => {
+                document.removeEventListener("mousedown", handleClickOutside);
+            };
+        }, [ref]);
+    };
 
-        // setShow(!show);
-    },[currentColor]);
-    // rgbToHex(color.rgb)
-    const activeColor = (item) => { console.log(item); setCurrentColor(item); setTempColor(null); setShow(!show);};
+    const activeColor = (item) => {
+       setCurrentColor(item);
+       setTempColor(null);
+       setShowColorList(!showColorList);
+    };
+
     return (
-        <Context.Provider value={{activeColor, colors,setCurrentColor, currentColor, setShow, show, tempColor, setTempColor, showRGB, setShowRGB}}>
+        <Context.Provider value={{activeColor, colors,setCurrentColor, currentColor, setShowColorList, showColorList, tempColor, setTempColor, showRGBRange, setShowRGBRange, useOutsideAlerter}}>
             <div className="colorPicker-wrapper">
                 <div className="colorPicker">
-                    <div className="hex"><input disabled value={rgbToHex(currentColor.rgb)}/></div>
+                    <div className="hex"><input disabled value={tempColor !== null ? rgbToHex(tempColor.rgb): rgbToHex(currentColor.rgb)}/></div>
                     <Color />
                     <Arrow />
                 </div>
-                {show ?  <DropDowns /> : ''}
-                {showRGB ? <DropDownsRGB /> : ''}
+                {showColorList ?  <DropDowns /> : ''}
+                {showRGBRange ? <DropDownsRGB /> : ''}
             </div>
         </Context.Provider>
     );

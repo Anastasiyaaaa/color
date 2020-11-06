@@ -1,21 +1,22 @@
-import React, {useContext, useEffect}  from 'react'
+import React, {useContext}  from 'react'
 import Context from './context'
 
 export default function Buttons() {
-    const {showRGB, setShowRGB, setTempColor, currentColor, setCurrentColor, tempColor} = useContext(Context);
+    const {showRGBRange, setShowRGBRange, setTempColor, setCurrentColor, tempColor} = useContext(Context);
     const close = (e) => {
         e.preventDefault();
-        setShowRGB(!showRGB);
-        setTempColor(currentColor);
+        setShowRGBRange(!showRGBRange);
+        setTempColor(null);
     };
     const apply = (e) => {
         e.preventDefault();
-        setShowRGB(!showRGB);
+        setShowRGBRange(!showRGBRange);
         setCurrentColor(tempColor);
     };
     return(
-        <div>
-            <button onClick={(e) =>close(e)}>CANCEL</button> <button onClick={(e) =>apply(e)}>OK</button>
+        <div className='button-block'>
+            <button onClick={(e) => close(e)}>CANCEL</button>
+            <button onClick={(e) => apply(e)}>OK</button>
         </div>
     )
 }
