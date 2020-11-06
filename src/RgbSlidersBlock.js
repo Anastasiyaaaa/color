@@ -1,4 +1,4 @@
-import React, {useContext, useRef} from 'react'
+import React, {useContext, useRef, useEffect} from 'react'
 import Context from './context'
 import RgbSlider from './RgbSlider'
 import Buttons from './Buttons'
@@ -8,9 +8,12 @@ export default function RgbSlidersBlock() {
     const closeDropDown = useRef(null);
     useOutsideAlerter(closeDropDown,  setShowRGBRange, showRGBRange);
 
-    if (!tempColor ) {
-        setTempColor(currentColor);
-    }
+    useEffect(() => {
+        if (!tempColor ) {
+            setTempColor(currentColor);
+        }
+    }, [!tempColor]);
+
     const changeR = (v) => {
         setTempColor({ ...tempColor, rgb: [v, tempColor.rgb[1], tempColor.rgb[2]]});
     };
