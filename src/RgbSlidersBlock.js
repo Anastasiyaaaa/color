@@ -1,9 +1,9 @@
 import React, {useContext, useRef} from 'react'
 import Context from './context'
-import DropArrowRGBItem from './DropArrowRGBItem'
+import RgbSlider from './RgbSlider'
 import Buttons from './Buttons'
 
-export default function DropDowns() {
+export default function RgbSlidersBlock() {
     const {currentColor, setTempColor, tempColor, setShowRGBRange, showRGBRange, useOutsideAlerter} = useContext(Context);
     const closeDropDown = useRef(null);
     useOutsideAlerter(closeDropDown,  setShowRGBRange, showRGBRange);
@@ -25,9 +25,9 @@ export default function DropDowns() {
         tempColor &&
         <div className='dropdown dropdown_rgb' ref={closeDropDown}>
             <ul>
-                <DropArrowRGBItem value={tempColor.rgb[0]} onChange={changeR} text='R' i='1'/>
-                <DropArrowRGBItem value={tempColor.rgb[1]}   onChange={changeG} text='G' i='2'/>
-                <DropArrowRGBItem value={tempColor.rgb[2]}   onChange={changeB} text='B' i='3'/>
+                <RgbSlider value={tempColor.rgb[0]} onChange={changeR} text='R' i='1'/>
+                <RgbSlider value={tempColor.rgb[1]} onChange={changeG} text='G' i='2'/>
+                <RgbSlider value={tempColor.rgb[2]} onChange={changeB} text='B' i='3'/>
             </ul>
             <Buttons />
         </div>

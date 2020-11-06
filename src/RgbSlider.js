@@ -1,6 +1,7 @@
 import React, {useState}  from 'react'
 
-export default function DropArrowRGBItem(props){
+export default function RgbSlider(props){
+
     const [rangeVal, setRangeVal] = useState(props.value);
     const change = (v) => {
         setRangeVal(+v);

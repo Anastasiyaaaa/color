@@ -87,7 +87,8 @@ button:hover,
 button:active,
 button:focus,
 button:visited{
-    border-color: rgba(230,100,101, 1);;
+    border-color: rgba(230,100,101, 1);
+    outline: none;
 }
 
 h1 {

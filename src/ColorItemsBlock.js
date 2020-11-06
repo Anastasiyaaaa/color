@@ -1,9 +1,10 @@
 import React, {useContext, useRef}  from 'react'
 import Context from './context'
-import DropArrowItem from './DropArrowItem'
+import ColorItem from './ColorItem'
 
 
-export default function DropDowns() {
+export default function ColorItemsBlock() {
+
     const {colors, showColorList, setShowColorList, useOutsideAlerter} = useContext(Context);
     const closeDropDown = useRef(null);
     useOutsideAlerter(closeDropDown, setShowColorList, showColorList);
@@ -11,7 +12,7 @@ export default function DropDowns() {
     return (
         <div className='dropdown dropdown_arrow' ref={closeDropDown}>
             <ul>
-                {colors.map((item, index) => <DropArrowItem key={index} {...item} /> )}
+                {colors.map((item, index) => <ColorItem key={index} {...item} /> )}
             </ul>
         </div>
     )

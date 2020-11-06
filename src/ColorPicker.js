@@ -2,8 +2,8 @@ import React, {useEffect, useState} from 'react'
 import Context from './context'
 import Color from './Color';
 import Arrow from './Arrow';
-import DropDowns from './DropDowns';
-import DropDownsRGB from './DropDownsRGB';
+import ColorItemsBlock from './ColorItemsBlock';
+import RgbSlidersBlock from './RgbSlidersBlock';
 
 
 
@@ -43,22 +43,24 @@ export default function ColorPicker() {
         }, [ref]);
     };
 
-    const activeColor = (item) => {
+    const setActiveColor = (item) => {
        setCurrentColor(item);
        setTempColor(null);
        setShowColorList(!showColorList);
     };
 
     return (
-        <Context.Provider value={{activeColor, colors,setCurrentColor, currentColor, setShowColorList, showColorList, tempColor, setTempColor, showRGBRange, setShowRGBRange, useOutsideAlerter}}>
+        <Context.Provider value={{setActiveColor, colors,setCurrentColor, currentColor, setShowColorList, showColorList, tempColor, setTempColor, showRGBRange, setShowRGBRange, useOutsideAlerter}}>
             <div className="colorPicker-wrapper">
                 <div className="colorPicker">
-                    <div className="hex"><input disabled value={tempColor !== null ? rgbToHex(tempColor.rgb): rgbToHex(currentColor.rgb)}/></div>
+                    <div className="hex">
+                        <input disabled value={tempColor !== null ? rgbToHex(tempColor.rgb) : rgbToHex(currentColor.rgb)}/>
+                    </div>
                     <Color />
                     <Arrow />
                 </div>
-                {showColorList ?  <DropDowns /> : ''}
-                {showRGBRange ? <DropDownsRGB /> : ''}
+                {showColorList && <ColorItemsBlock />}
+                {showRGBRange && <RgbSlidersBlock />}
             </div>
         </Context.Provider>
     );
