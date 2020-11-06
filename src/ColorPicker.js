@@ -4,7 +4,7 @@ import Color from './Color';
 import Arrow from './Arrow';
 import ColorItemsBlock from './ColorItemsBlock';
 import RgbSlidersBlock from './RgbSlidersBlock';
-
+import {rgbToHex} from './Utility';
 
 
 export default function ColorPicker() {
@@ -20,13 +20,6 @@ export default function ColorPicker() {
     const [showRGBRange, setShowRGBRange] = useState(false);
     const [currentColor, setCurrentColor] = useState(colors[0]);
     const [tempColor, setTempColor] = useState(null);
-
-    const rgbToHex = (arr) =>{
-        const r = arr[0];
-        const g = arr[1];
-        const b = arr[2];
-        return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1)
-    };
 
     const useOutsideAlerter = (ref, set, curr) => {
         useEffect(() => {
@@ -44,9 +37,9 @@ export default function ColorPicker() {
     };
 
     const setActiveColor = (item) => {
-       setCurrentColor(item);
-       setTempColor(null);
-       setShowColorList(!showColorList);
+        setCurrentColor(item);
+        setTempColor(null);
+        setShowColorList(!showColorList);
     };
 
     return (
